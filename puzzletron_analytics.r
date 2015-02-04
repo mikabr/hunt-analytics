@@ -67,10 +67,10 @@ ggplot(ts.round.data, aes(x=fun.mean, y=difficulty.mean, colour=round.name)) +
   geom_point(aes(x=fun.mean, y=difficulty.mean, size=n)) +
 #  geom_errorbar(aes(ymin=difficulty.mean-difficulty.se,
 #                     ymax=difficulty.mean+difficulty.se),
-#                alpha=0.4) +
+#                alpha=0.3) +
 #  geom_errorbarh(aes(xmin=fun.mean-fun.se,
 #                     xmax=fun.mean+fun.se),
-#                 alpha=0.4) +
+#                 alpha=0.3) +
     theme_bw() + 
   scale_colour_discrete(name = "Round Name") +
   scale_size(name = "Number of Responses") +
@@ -78,6 +78,8 @@ ggplot(ts.round.data, aes(x=fun.mean, y=difficulty.mean, colour=round.name)) +
                      limits = c(1,5)) + 
   scale_y_continuous(name = "Mean Difficulty Score",
                      limits = c(1,5))
+ggsave("~/Documents/projects/hunt_analytics/plots/testsolving_feedback.png",
+       width=8, height=6)
 
 
 round.author.data <- left_join(round.data, author.data)
@@ -92,7 +94,7 @@ ggplot(author.puzzles, aes(x=reorder(username, -num.puzzles,), y=num.puzzles)) +
   xlab("") +
   ylab("Number of puzzles authored") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-ggsave("~/Dropbox/Hunt/plots/authors.png", width=10, height=6)
+ggsave("~/Documents/projects/hunt_analytics/plots/authors.png", width=10, height=6)
 
 round.editor.data <- left_join(round.data, editor.data)
 editor.puzzles <- round.editor.data %>%
@@ -106,7 +108,7 @@ ggplot(editor.puzzles, aes(x=reorder(username, -num.puzzles,), y=num.puzzles)) +
   xlab("") +
   ylab("Number of puzzles editored") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-ggsave("~/Dropbox/Hunt/plots/editors.png", width=6, height=6)
+ggsave("~/Documents/projects/hunt_analytics/plots/editors.png", width=6, height=6)
 
 round.tester.data <- left_join(round.data, tester.data)
 tester.puzzles <- round.tester.data %>%
@@ -120,7 +122,7 @@ ggplot(tester.puzzles, aes(x=reorder(username, -num.puzzles,), y=num.puzzles)) +
   xlab("") +
   ylab("Number of puzzles testsolved") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-ggsave("~/Dropbox/Hunt/plots/testsolvers.png", width=13, height=6)
+ggsave("~/Documents/projects/hunt_analytics/plots/testsolvers.png", width=13, height=6)
 
 round.ffcer.data <- left_join(round.data, ffcer.data)
 ffcer.puzzles <- round.ffcer.data %>%
@@ -134,7 +136,7 @@ ggplot(ffcer.puzzles, aes(x=reorder(username, -num.puzzles,), y=num.puzzles)) +
   xlab("") +
   ylab("Number of puzzles factchecked") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-ggsave("~/Dropbox/Hunt/plots/factcheckers.png", width=8, height=6)
+ggsave("~/Documents/projects/hunt_analytics/plots/factcheckers.png", width=8, height=6)
 
 test <- author.data %>%
   group_by(pid) %>%
